@@ -23,6 +23,7 @@ This project is made so all the elements are displayed correctly on popular scre
 
 ![Screen Shot 1](./images/images/ss1.png)
 ![Screen Shot 1](./images/ss2.png)
+Video link- https://drive.google.com/file/d/1x6Zye5cIoQeY0cDzvrRyxuOh1xtIWE4a/view?usp=sharing
 
 ## Deployment Link
 
