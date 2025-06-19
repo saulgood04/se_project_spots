@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a responsive image gallery website that showcases a collection of images. Built with HTML and CSS, the website demonstrates advanced responsive web design techniques, ensuring a seamless viewing experience across all device sizes from mobile phones to desktop computers.
+This project is a responsive image gallery website that showcases a collection of images. Built with HTML, CSS, and JavaScript, the website demonstrates advanced responsive web design techniques, ensuring a seamless viewing experience across all device sizes from mobile phones to desktop computers. The website took a basic image gallery and made it interactive with modals.
 
 Key features include:
 
@@ -10,6 +10,10 @@ Key features include:
 - Custom font implementation using Google's Poppins font family
 - Consistent image sizing and formatting
 - BEM methodology for organized and maintainable code structure
+- Two interactive modals, Edit Profile and New Post
+- Dynamic profile editing, users can update their name and description in real-time
+- Multiple ways to close modals, close button AND clicking outside the modal
+- Form handling, capturing and processing user input
 
 The project was designed in Figma and implemented using modern CSS techniques including Flexbox and Grid layouts, demonstrating the journey from design to deployment.
 
@@ -21,6 +25,7 @@ Development Tools & Technologies:
 - CSS
 - BEM methodology
 - Git Hub page deployment
+- JavaScript
 
 Design Elements:
 
@@ -29,6 +34,8 @@ Design Elements:
 - Custom Google Fonts integration
 - Media queries
 - Images Optimization - use of correct size, format, and high-quality image display
+- Interactive modals
+- Form handling
 
 Design Tools:
 
