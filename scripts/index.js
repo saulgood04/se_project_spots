@@ -14,10 +14,7 @@ const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const addCardFormElement = newPostModal.querySelector(".modal__form");
 const nameInput = newPostModal.querySelector("#card-caption-input");
-const linkInput = newPostModal.querySelector(
-  "#card-image-input"
-);
-
+const linkInput = newPostModal.querySelector("#card-image-input");
 
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
@@ -61,7 +58,6 @@ newPostModal.addEventListener("click", function (evt) {
   }
 });
 
-
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   console.log(nameInput.value);
@@ -69,4 +65,4 @@ function handleAddCardSubmit(evt) {
   newPostModal.classList.remove("modal_is-opened");
 }
 
-addCardFormElement.addEventListener('submit', handleAddCardSubmit);
+addCardFormElement.addEventListener("submit", handleAddCardSubmit);
