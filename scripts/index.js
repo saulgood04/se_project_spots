@@ -1,5 +1,9 @@
 const initialCards = [
   {
+    name: "Golden Gate Bridge",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
+  {
     name: "Val Thorens",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
   },
@@ -43,6 +47,11 @@ const addCardFormElement = newPostModal.querySelector(".modal__form");
 const nameInput = newPostModal.querySelector("#card-caption-input");
 const linkInput = newPostModal.querySelector("#card-image-input");
 
+const previewModal = document.querySelector("#preview-modal");
+const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
+const previewImageEl = previewModal.querySelector(".modal__image");
+const previewCaptionEl = previewModal.querySelector(".modal__caption");
+
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 
@@ -60,7 +69,6 @@ function getCardElement(data) {
   cardImageEl.alt = data.name;
   cardTitleEl.textContent = data.name;
 
-  console.log("Like button clicked!");
   const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
   cardLikeBtnEl.addEventListener("click", () => {
     cardLikeBtnEl.classList.toggle("card__like-btn_active");
@@ -72,7 +80,13 @@ function getCardElement(data) {
     cardElement = null;
   });
 
-  console.log(cardElement);
+  cardImageEl.addEventListener("click", () => {
+    previewImageEl.src = data.link;
+    previewImageEl.alt = data.name;
+    previewCaptionEl.textContent = data.name;
+    openModal(previewModal);
+  });
+
   return cardElement;
 }
 
@@ -102,6 +116,10 @@ newPostCloseBtn.addEventListener("click", function () {
   closeModal(newPostModal);
 });
 
+previewModalCloseBtn.addEventListener("click", function () {
+  closeModal(previewModal);
+});
+
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
   profileNameEl.textContent = editProfileNameInput.value;
@@ -125,12 +143,12 @@ newPostModal.addEventListener("click", function (evt) {
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-  console.log(nameInput.value);
-  console.log(linkInput.value);
   closeModal(newPostModal);
   const inputValues = { name: nameInput.value, link: linkInput.value };
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
+  nameInput.value = "";
+  linkInput.value = "";
 }
 
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
