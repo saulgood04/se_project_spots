@@ -46,6 +46,24 @@ const linkInput = newPostModal.querySelector("#card-image-input");
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".card");
+const cardsList = document.querySelector(".cards__list");
+
+function getCardElement(data) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardTitleEl = cardElement.querySelector(".card__title");
+  const cardImageEl = cardElement.querySelector(".card__image");
+
+  cardImageEl.src = data.link;
+  cardImageEl.alt = data.name;
+  cardTitleEl.textContent = data.name;
+
+  console.log(cardElement);
+  return cardElement;
+}
+
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
 }
@@ -65,11 +83,11 @@ editProfileCloseBtn.addEventListener("click", function () {
 });
 
 newPostBtn.addEventListener("click", function () {
-  openModal(editProfileModal);
+  openModal(newPostModal);
 });
 
 newPostCloseBtn.addEventListener("click", function () {
-  openModal(editProfileModal);
+  closeModal(newPostModal);
 });
 
 function handleEditProfileSubmit(evt) {
@@ -89,7 +107,7 @@ editProfileModal.addEventListener("click", function (evt) {
 
 newPostModal.addEventListener("click", function (evt) {
   if (evt.target === newPostModal) {
-    closeModal(editProfileModal);
+    closeModal(newPostModal);
   }
 });
 
@@ -97,12 +115,15 @@ function handleAddCardSubmit(evt) {
   evt.preventDefault();
   console.log(nameInput.value);
   console.log(linkInput.value);
-  closeModal(editProfileModal);
+  closeModal(newPostModal);
+  const inputValues = { name: nameInput.value, link: linkInput.value };
+  const cardElement = getCardElement(inputValues);
+  cardsList.prepend(cardElement);
 }
 
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach(function (item) {
-  console.log(item.name);
-  console.log(item.link);
+  const cardElement = getCardElement(item);
+  cardsList.append(cardElement);
 });
