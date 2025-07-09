@@ -47,7 +47,7 @@
 }
 
 .modal__close_type_preview {
-  background-image: url("./images/CloseIcon.svg");
+  background-image: url("./images/whiteCloseBtn.svg");
   color: #212121;
   top: 0;
   right: -52.5px;
@@ -156,6 +156,7 @@
   padding-bottom: 4px;
   padding-left: 8px;
   display: inline-block;
+  font-size: 20px;
 }
 
 @media screen and (max-width: 480px) {
@@ -182,6 +183,10 @@
     top: 10px;
     right: 28px;
     border-width: 2px;
+  }
+
+  .modal__caption {
+    font-size: 16px;
   }
 }
 

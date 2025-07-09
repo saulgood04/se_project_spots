@@ -10,6 +10,10 @@
   border-radius: 8px;
 }
 
+.card__image:hover {
+  cursor: pointer;
+}
+
 .card__delete-button {
   width: 32px;
   height: 32px;
@@ -52,6 +56,7 @@
 .card__like-btn_active {
   background-image: url(../images/like-active.svg);
   opacity: 1;
+  background-repeat: no-repeat;
 }
 
 .card__like-btn_active:hover {
