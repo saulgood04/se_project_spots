@@ -85,10 +85,12 @@
   letter-spacing: 0%;
   border-radius: 8px;
   color: rgba(33, 33, 33, 0.7);
+  margin-bottom: 32px;
+  display: block;
 }
 
 .modal__input {
-  margin: 8px 0 32px;
+  margin: 8px 0 0;
   width: 100%;
   box-sizing: border-box;
   font-family: Poppins, Arial, Helvetica, sans-serif;
@@ -109,6 +111,20 @@
 .modal__input:hover {
   cursor: pointer;
   border: 1px solid rgb(33, 33, 33);
+}
+
+.modal__error {
+  display: block;
+  margin-top: 8px;
+  /* TODO use correct color and font sizes*/
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  leading-trim: NONE;
+  line-height: 110.00000000000001%;
+  letter-spacing: 0%;
+  color: #ff0000b2;
 }
 
 .modal__submit-btn {
