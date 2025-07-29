@@ -12,10 +12,21 @@ const hideInputError = (formEl, inputElement) => {
   inputElement.classList.remove("modal__input_type_error");
 };
 
-const toggleButtonState = (inputList, buttonElement) => {
-  const hasInvalidInput = inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
+const hasInvalidInput = (inputList) => {
+  return inputList.some((input) => {
+    return !input.validity.valid;
   });
+};
+
+const toggleButtonState = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.disabled = true;
+    buttonElement.classList.add("modal__submit-btn_disabled");
+    //Don't forget the CSS
+  } else {
+    buttonElement.disabled = false;
+    buttonElement.classList.remove("modal__submit-btn_disabled");
+  }
 };
 
 const checkInputValidity = (formEl, inputElement) => {
@@ -31,7 +42,7 @@ const setEventListeners = (formEl) => {
   const buttonElement = formEl.querySelector(".modal__submit-btn");
 
   // TODO - handle initial states
-  //toggleButtonState(inputList, buttonElement);
+  toggleButtonState(inputList, buttonElement);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {

@@ -151,6 +151,11 @@
   opacity: 70%;
 }
 
+.modal__submit-btn_disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
 .modal__image-container {
   position: relative;
 }
