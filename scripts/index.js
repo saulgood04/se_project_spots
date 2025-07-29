@@ -124,7 +124,7 @@ function handleEditProfileSubmit(evt) {
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
   closeModal(editProfileModal);
-}
+  }
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
@@ -148,6 +148,11 @@ function handleAddCardSubmit(evt) {
   cardsList.prepend(cardElement);
   nameInput.value = "";
   linkInput.value = "";
+  const inputList = Array.from(
+    addCardFormElement.querySelectorAll(".modal__input")
+  );
+  const buttonElement = addCardFormElement.querySelector(".modal__submit-btn");
+  toggleButtonState(inputList, buttonElement);
 }
 
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
