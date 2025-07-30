@@ -152,7 +152,7 @@ function handleAddCardSubmit(evt) {
     addCardFormElement.querySelectorAll(".modal__input")
   );
   const buttonElement = addCardFormElement.querySelector(".modal__submit-btn");
-  toggleButtonState(inputList, buttonElement);
+  toggleButtonState(inputList, buttonElement, config);
 }
 
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
