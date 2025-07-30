@@ -97,6 +97,14 @@ function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
 }
 
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    closeModal(editProfileModal);
+    closeModal(newPostModal);
+    closeModal(previewModal);
+  }
+});
+
 editProfileBtn.addEventListener("click", function () {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
@@ -124,7 +132,7 @@ function handleEditProfileSubmit(evt) {
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
   closeModal(editProfileModal);
-  }
+}
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
