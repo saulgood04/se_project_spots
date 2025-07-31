@@ -22,6 +22,11 @@ const hideInputError = (formEl, inputElement, config) => {
   inputElement.classList.remove(config.inputErrorClass);
   errorMsgEl.classList.remove(config.errorClass);
 };
+const resetValidation = (formElement, inputList, settings) => {
+  inputList.forEach((inputElement) => {
+    hideInputError(formElement, inputElement, settings);
+  });
+};
 
 const hasInvalidInput = (inputList) => {
   return inputList.some((input) => {

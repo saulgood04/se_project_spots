@@ -95,6 +95,7 @@ function openModal(modal) {
 
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
+  newPostModal.removeEventListener("click", handleNewPostOverlayClick);
 }
 
 function handleEscape(event) {
@@ -105,9 +106,7 @@ function handleEscape(event) {
   }
 }
 
-document.addEventListener("keydown", function (event) {
-  handleEscape(event);
-});
+document.addEventListener("keydown", handleEscape);
 
 editProfileBtn.addEventListener("click", function () {
   editProfileNameInput.value = profileNameEl.textContent;
@@ -137,9 +136,7 @@ newPostCloseBtn.addEventListener("click", function () {
 });
 
 previewModalCloseBtn.addEventListener("click", (evt) => {
-  if (evt.target === previewModal) {
-    closeModal(previewModal);
-  }
+  closeModal(previewModal);
 });
 
 function handleEditProfileSubmit(evt) {
@@ -170,11 +167,8 @@ function handleAddCardSubmit(evt) {
   const inputValues = { name: cardCaptionInput.value, link: linkInput.value };
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
-  cardCaptionInput.value = "";
-  linkInput.value = "";
-  const inputList = Array.from(
-    addCardFormElement.querySelectorAll(".modal__input")
-  );
+  evt.target.reset();
+  const inputList = [cardCaptionInput, linkInput];
   const buttonElement = addCardFormElement.querySelector(".modal__submit-btn");
   toggleButtonState(inputList, buttonElement, settings);
 }
