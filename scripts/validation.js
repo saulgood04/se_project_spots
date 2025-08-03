@@ -9,7 +9,7 @@ const settings = {
 
 const showInputError = (formEl, inputElement, errorMsg, config) => {
   const errorMsgID = inputElement.id + "-error";
-  const errorMsgEl = document.querySelector("#" + errorMsgID);
+  const errorMsgEl = formEl.querySelector("#" + errorMsgID);
   errorMsgEl.textContent = errorMsg;
   inputElement.classList.add(config.inputErrorClass);
   errorMsgEl.classList.add(config.errorClass);
@@ -17,7 +17,7 @@ const showInputError = (formEl, inputElement, errorMsg, config) => {
 
 const hideInputError = (formEl, inputElement, config) => {
   const errorMsgID = inputElement.id + "-error";
-  const errorMsgEl = document.querySelector("#" + errorMsgID);
+  const errorMsgEl = formEl.querySelector("#" + errorMsgID);
   errorMsgEl.textContent = "";
   inputElement.classList.remove(config.inputErrorClass);
   errorMsgEl.classList.remove(config.errorClass);

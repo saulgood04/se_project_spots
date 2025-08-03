@@ -91,12 +91,13 @@ function getCardElement(data) {
 
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
+  modal.addEventListener("click", handleOverlayClick);
   document.addEventListener("keydown", handleEscape);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
-  modal.removeEventListener("click", handleNewPostOverlayClick);
+  modal.removeEventListener("click", handleOverlayClick);
   document.removeEventListener("keydown", handleEscape);
 }
 
@@ -112,8 +113,8 @@ editProfileBtn.addEventListener("click", function () {
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
   resetValidation(
     editProfileForm,
-    editProfileNameInput,
-    editProfileDescriptionInput
+    [editProfileNameInput, editProfileDescriptionInput],
+    settings
   );
   openModal(editProfileModal);
 });
@@ -128,22 +129,12 @@ function handleOverlayClick(evt) {
   }
 }
 
-function openModal(modal) {
-  modal.addEventListener("click", handleOverlayClick);
-}
-
-function closeModal(modal) {
-  modal.removeEventListener("click", handleOverlayClick);
-}
-
 newPostBtn.addEventListener("click", function () {
   openModal(newPostModal);
-  newPostModal.addEventListener("click", handleNewPostOverlayClick);
 });
 
 newPostCloseBtn.addEventListener("click", function () {
   closeModal(newPostModal);
-  newPostModal.removeEventListener("click", handleNewPostOverlayClick);
 });
 
 previewModalCloseBtn.addEventListener("click", (evt) => {
@@ -159,20 +150,7 @@ function handleEditProfileSubmit(evt) {
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
-function handleEditModalClick(evt) {
-  if (evt.target === editProfileModal) {
-    closeModal(editProfileModal);
-  }
-}
-
-editProfileModal.addEventListener("click", function (evt) {
-  if (evt.target === editProfileModal) {
-    closeModal(editProfileModal);
-  }
-});
-
 function handleAddCardSubmit(evt) {
-  newPostModal.removeEventListener("click", handleNewPostOverlayClick);
   evt.preventDefault();
   closeModal(newPostModal);
   const inputValues = { name: cardCaptionInput.value, link: linkInput.value };
