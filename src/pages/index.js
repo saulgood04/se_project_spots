@@ -62,11 +62,17 @@ const api = new Api({
 
 api
   .getAppInfo()
-  .then(([cards]) => {
+  .then(([cards, users]) => {
     cards.forEach(function (item) {
       const cardElement = getCardElement(item);
       cardsList.append(cardElement);
     });
+
+    profileNameEl.textContent = users.name;
+    profileDescriptionEl.textContent = users.about;
+    document.querySelector(".profile__avatar").src = users.avatar;
+
+    
   })
   .catch(console.error);
 
@@ -184,8 +190,18 @@ previewModalCloseBtn.addEventListener("click", (evt) => {
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
-  profileNameEl.textContent = editProfileNameInput.value;
-  profileDescriptionEl.textContent = editProfileDescriptionInput.value;
+  api
+    .editUserInfo({
+      name: editProfileNameInput.value,
+      about: editProfileDescriptionInput.value,
+    })
+    .then((data) => {
+      profileNameEl.textContent = data.name;
+      profileDescriptionEl.textContent = data.about;
+    })
+
+    .catch(console.error);
+
   closeModal(editProfileModal);
 }
 
