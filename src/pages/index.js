@@ -2,13 +2,18 @@ import "./index.css";
 import logoSvg from "../images/logo.svg";
 import avatarJpg from "../images/avatar.jpg";
 import pencilSvg from "../images/pencil.svg";
+import pencilLightSvg from "../images/pencil-light.svg";
 import plusSvg from "../images/Plus.svg";
 import closeIconSvg from "../images/CloseIcon.svg";
+import trashIcon from "../images/delete1.svg";
+console.log("trashIcon:", trashIcon);
+console.log("Import result:", trashIcon);
 import whiteCloseBtnSvg from "../images/whiteCloseBtn.svg";
 document.querySelector(".header__logo").src = logoSvg;
 document.querySelector(".profile__avatar").src = avatarJpg;
 document.querySelector(".profile__edit-btn img").src = pencilSvg;
 document.querySelector(".profile__add-btn img").src = plusSvg;
+document.querySelector(".profile__pencil-icon").src = pencilLightSvg;
 document.querySelectorAll(".modal__close-btn img")[0].src = closeIconSvg;
 document.querySelectorAll(".modal__close-btn img")[1].src = closeIconSvg;
 document.querySelector(".modal__close-btn_type_preview img").src =
@@ -71,13 +76,12 @@ api
     profileNameEl.textContent = users.name;
     profileDescriptionEl.textContent = users.about;
     document.querySelector(".profile__avatar").src = users.avatar;
-
-    
   })
   .catch(console.error);
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
+const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
 const editProfileForm = editProfileModal.querySelector(".modal__form");
 const editProfileNameInput = editProfileModal.querySelector(
@@ -93,6 +97,12 @@ const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const addCardFormElement = newPostModal.querySelector(".modal__form");
 const cardCaptionInput = newPostModal.querySelector("#card-caption-input");
 const linkInput = newPostModal.querySelector("#card-image-input");
+
+const avatarModal = document.querySelector("#edit-avatar-modal");
+const avatarBtn = avatarModal.querySelector(".profile__add-btn");
+const avatarCloseBtn = avatarModal.querySelector(".modal__close-btn");
+const avatarElement = avatarModal.querySelector(".modal__form");
+const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
@@ -122,6 +132,9 @@ function getCardElement(data) {
   });
 
   const cardDeleteBtnEl = cardElement.querySelector(".card__delete-button");
+  const deleteIcon = cardElement.querySelector(".card__delete-icon");
+
+  deleteIcon.src = trashIcon;
   cardDeleteBtnEl.addEventListener("click", () => {
     cardElement.remove();
   });
@@ -134,6 +147,18 @@ function getCardElement(data) {
   });
 
   return cardElement;
+}
+
+function handleAvatarSubmit(evt) {
+  evt.preventDefault();
+  api
+    .editAvatarInfo(avatarInput.value)
+    .then((data) => {
+      document.querySelector(".profile__avatar").src = data.avatar;
+      closeModal(avatarModal);
+      avatarElement.reset();
+    })
+    .catch(console.error);
 }
 
 function openModal(modal) {
@@ -206,6 +231,15 @@ function handleEditProfileSubmit(evt) {
 }
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
+
+avatarModalBtn.addEventListener("click", () => {
+  openModal(avatarModal);
+  resetValidation(avatarElement, [avatarInput], settings);
+});
+avatarElement.addEventListener("submit", handleAvatarSubmit);
+avatarCloseBtn.addEventListener("click", (evt) => {
+  closeModal(avatarModal);
+});
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
