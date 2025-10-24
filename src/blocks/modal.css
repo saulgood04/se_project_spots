@@ -184,6 +184,119 @@
   font-size: 20px;
 }
 
+.delete-modal {
+  width: 630px;
+  height: 172px;
+  background-color: #fff;
+  opacity: 1;
+  top: 325px;
+  left: 405px;
+  padding-top: 32px;
+  padding-right: 20px;
+  padding-bottom: 32px;
+  padding-left: 20px;
+  gap: 32px;
+  border-radius: 8px;
+  position: fixed;
+  font-size: 24px;
+}
+
+.modal__title {
+
+  height: 24px;
+
+  opacity: 1;
+  font-family: Poppins;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 24px;
+
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #212121;
+}
+
+#delete-form {
+  display: flex;
+  flex-direction: row;
+  width: 630;
+  height: 172;
+  justify-content: center;
+  opacity: 1;
+  top: 325px;
+  left: 405px;
+  padding-top: 32px;
+  padding-right: 20px;
+  padding-bottom: 32px;
+  padding-left: 20px;
+  gap: 32px;
+  border-radius: 8px;
+}
+
+.modal__cancel-btn {
+  width: 156px;
+  height: 52px;
+
+  opacity: 1;
+  padding-top: 18px;
+  padding-right: 32px;
+  padding-bottom: 18px;
+  padding-left: 32px;
+  gap: 8px;
+  border-radius: 8px;
+  border-width: 1px;
+  font-family: Poppins;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.modal__submit-btn {
+  font-family: Poppins;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+
+  line-height: 100%;
+  letter-spacing: 0%;
+  width: 156px;
+  height: 52px;
+
+  opacity: 1;
+  padding-top: 18px;
+  padding-right: 32px;
+  padding-bottom: 18px;
+  padding-left: 32px;
+  gap: 8px;
+  border-radius: 8px;
+  background: #ff6565;
+}
+
+.modal__close-btn_type_delete {
+  all: unset;
+  position: absolute;
+  width: 40px;
+height: 40px;
+
+
+
+
+
+opacity: 1;
+
+top: 324px;
+left: 1047px;
+
+
+
+
+
+}
+
 @media screen and (max-width: 480px) {
   .modal__container {
     padding: 22px 12px 12px;
@@ -223,5 +336,50 @@
 
   .modal__image {
     max-width: unset;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .delete-modal {
+    width: 90%;
+    max-width: 400px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .modal__cancel-btn {
+    width: 120px;
+    font-size: 14px;
+    padding: 14px 20px;
+  }
+
+  .modal__submit-btn {
+    width: 120px;
+    font-size: 14px;
+    padding: 14px 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .delete-modal {
+    width: 95%;
+    padding: 20px 16px;
+    font-size: 20px;
+  }
+
+  #delete-form {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .modal__cancel-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .modal__submit-btn {
+    width: 100%;
+    max-width: 200px;
   }
 }

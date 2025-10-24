@@ -21,12 +21,9 @@
   font-weight: 500;
   font-style: Medium;
   font-size: 16px;
-  leading-trim: NONE;
   line-height: 100%;
   letter-spacing: 0%;
   border-radius: 8px;
-
-  
 }
 
 .profile__avatar-container:hover .profile__avatar-btn {
@@ -109,6 +106,8 @@
 .profile__add-btn:hover {
   opacity: 0.8;
 }
+
+
 
 @media screen and (max-width: 627px) {
   .profile {
