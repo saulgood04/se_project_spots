@@ -237,7 +237,8 @@
 .modal__cancel-btn {
   width: 156px;
   height: 52px;
-
+background-color: white;
+    color: #212121;
   opacity: 1;
   padding-top: 18px;
   padding-right: 32px;
@@ -253,6 +254,11 @@
 
   line-height: 100%;
   letter-spacing: 0%;
+}
+
+#edit-profile-modal .modal__submit-btn,
+#new-post-modal .modal__submit-btn {
+    background-color: #212121;
 }
 
 .modal__submit-btn {
@@ -277,23 +283,20 @@
 }
 
 .modal__close-btn_type_delete {
-  all: unset;
   position: absolute;
+  top: -10px;
+  right: -50px;
   width: 40px;
-height: 40px;
-
-
-
-
-
-opacity: 1;
-
-top: 324px;
-left: 1047px;
-
-
-
-
+  height: 40px;
+  color: #fff;
+  border: none;
+  padding: 0;
+background: none;
+font-size: 24px;
+ background-image: url("../images/whiteCloseBtn.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 
 }
 

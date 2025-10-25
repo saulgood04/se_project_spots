@@ -54,3 +54,8 @@ Design Tools:
 ## Deployment Link
 
 [Live demo](https://saulgood04.github.io/se_project_spots/)
+
+## Project Pitch Video
+Check out these videos, where I describe my project
+and some challenges I faced while building it:
+https://drive.google.com/file/d/1tH4j2uxYVHSjOioh7YjB6qf6Eb6KpIwM/view?usp=sharing

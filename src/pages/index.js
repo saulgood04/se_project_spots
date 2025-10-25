@@ -15,8 +15,9 @@ document.querySelector(".profile__add-btn img").src = plusSvg;
 document.querySelector(".profile__pencil-icon").src = pencilLightSvg;
 document.querySelectorAll(".modal__close-btn img")[0].src = closeIconSvg;
 document.querySelectorAll(".modal__close-btn img")[1].src = closeIconSvg;
-document.querySelector(".modal__close-btn_type_preview img").src =
-  whiteCloseBtnSvg;
+document.querySelector(".modal__close-btn_type_preview img").src = whiteCloseBtnSvg;
+document.querySelector(".modal__close-btn_type_delete img").src = closeIconSvg;
+
 import {
   enableValidation,
   settings,
@@ -64,12 +65,11 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
-console.log("About to call getAppInfo");
+
 api
   .getAppInfo()
   .then(([cards, users]) => {
-    console.log("Cards:", cards);
-    console.log("Users:", users);
+
     cards.forEach(function (item) {
       const cardElement = getCardElement(item);
       cardsList.append(cardElement);
@@ -126,7 +126,6 @@ const cardTemplate = document
 const cardsList = document.querySelector(".cards__list");
 
 function getCardElement(data) {
-  console.log(data);
   const cardElement = cardTemplate.cloneNode(true);
   const cardTitleEl = cardElement.querySelector(".card__title");
   const cardImageEl = cardElement.querySelector(".card__image");
