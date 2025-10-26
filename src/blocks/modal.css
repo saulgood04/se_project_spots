@@ -47,7 +47,7 @@
 }
 
 .modal__close-btn_type_preview {
-  background-image: url("../images/whiteCloseBtn.svg");
+
   color: #212121;
   top: 0;
   right: -52.5px;
@@ -152,8 +152,13 @@
 }
 
 .modal__submit-btn_disabled {
-  opacity: 0.2;
+   background-color: #c4c4c4;
+  color: #ffffff;
   cursor: default;
+}
+
+#edit-avatar-modal .modal__submit-btn {
+  background-color: #212121 !important;
 }
 
 .modal__image-container {
@@ -256,31 +261,9 @@ background-color: white;
   letter-spacing: 0%;
 }
 
-#edit-profile-modal .modal__submit-btn,
-#new-post-modal .modal__submit-btn {
-    background-color: #212121;
-}
 
-.modal__submit-btn {
-  font-family: Poppins;
-  font-weight: 500;
-  font-style: Medium;
-  font-size: 16px;
 
-  line-height: 100%;
-  letter-spacing: 0%;
-  width: 156px;
-  height: 52px;
 
-  opacity: 1;
-  padding-top: 18px;
-  padding-right: 32px;
-  padding-bottom: 18px;
-  padding-left: 32px;
-  gap: 8px;
-  border-radius: 8px;
-  background: #ff6565;
-}
 
 .modal__close-btn_type_delete {
   position: absolute;
@@ -293,10 +276,8 @@ background-color: white;
   padding: 0;
 background: none;
 font-size: 24px;
- background-image: url("../images/whiteCloseBtn.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+
+
 
 }
 

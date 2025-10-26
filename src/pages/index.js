@@ -8,8 +8,9 @@ import closeIconSvg from "../images/CloseIcon.svg";
 import trashIcon from "../images/delete1.svg";
 import whiteCloseBtnSvg from "../images/whiteCloseBtn.svg";
 let cardToDelete = null;
+const profileAvatarEl = document.querySelector(".profile__avatar");
 document.querySelector(".header__logo").src = logoSvg;
-document.querySelector(".profile__avatar").src = avatarJpg;
+profileAvatarEl.src = avatarJpg;
 document.querySelector(".profile__edit-btn img").src = pencilSvg;
 document.querySelector(".profile__add-btn img").src = plusSvg;
 document.querySelector(".profile__pencil-icon").src = pencilLightSvg;
@@ -17,6 +18,7 @@ document.querySelectorAll(".modal__close-btn img")[0].src = closeIconSvg;
 document.querySelectorAll(".modal__close-btn img")[1].src = closeIconSvg;
 document.querySelector(".modal__close-btn_type_preview img").src = whiteCloseBtnSvg;
 document.querySelector(".modal__close-btn_type_delete img").src = closeIconSvg;
+document.querySelector("#edit-avatar-modal .modal__close-btn img").src = closeIconSvg;
 
 import {
   enableValidation,
@@ -77,7 +79,7 @@ api
 
     profileNameEl.textContent = users.name;
     profileDescriptionEl.textContent = users.about;
-    document.querySelector(".profile__avatar").src = users.avatar;
+    profileAvatarEl.src = users.avatar;
   })
   .catch(console.error);
 
@@ -181,14 +183,20 @@ function getCardElement(data) {
 
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true);
+
   api
     .editAvatarInfo(avatarInput.value)
     .then((data) => {
-      document.querySelector(".profile__avatar").src = data.avatar;
+      profileAvatarEl.src = data.avatar;
       closeModal(avatarModal);
       avatarElement.reset();
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, false);
+    });
 }
 
 function openModal(modal) {
@@ -232,6 +240,7 @@ function handleOverlayClick(evt) {
 }
 
 newPostBtn.addEventListener("click", function () {
+  resetValidation(addCardFormElement, [cardCaptionInput, linkInput], settings);
   openModal(newPostModal);
 });
 
@@ -259,17 +268,19 @@ function handleEditProfileSubmit(evt) {
     .then((data) => {
       profileNameEl.textContent = data.name;
       profileDescriptionEl.textContent = data.about;
+      closeModal(editProfileModal);
     })
+
 
     .catch(console.error)
     .finally(() => {
 
-      submitBtn.textContent = "Save";
+      setButtonText(submitBtn, false);
     });
 
 
 
-  closeModal(editProfileModal);
+
 }
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
@@ -289,7 +300,7 @@ function handleAddCardSubmit(evt) {
   const link = linkInput.value;
 
   const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true, "Saving...", "Save");
+  setButtonText(submitBtn, true);
 
   api
     .addCard({ name, link })
@@ -302,22 +313,23 @@ function handleAddCardSubmit(evt) {
       const inputList = [cardCaptionInput, linkInput];
       const buttonElement =
         addCardFormElement.querySelector(".modal__submit-btn");
-      toggleButtonState(inputList, buttonElement, settings);
+      toggleButtonState(inputList, submitBtn, settings);
     })
     .catch(console.error)
     .finally(() => {
-      setButtonText(submitBtn, false, "Saving...", "Save");
+      setButtonText(submitBtn, false);
     });
 }
 
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 
 document
-  .querySelector("#delete-modal .modal__submit-btn")
-  .addEventListener("click", (evt) => {
+   .querySelector("#delete-modal .modal__form")
+  .addEventListener("submit", (evt) => {
+    evt.preventDefault();
     if (cardToDelete) {
-      const submitBtn = evt.target;
-      setButtonText(submitBtn, true, "Delete", "Deleting...");
+      const submitBtn = evt.submitter;
+      setButtonText(submitBtn, true);
 
       api
         .deleteCard(cardToDelete.dataset.cardId)
@@ -330,7 +342,7 @@ document
           console.error("Failed to delete card:", error);
         })
         .finally(() => {
-          setButtonText(submitBtn, false, "Delete", "Deleting...");
+          setButtonText(submitBtn, false);
         });
     }
   });
