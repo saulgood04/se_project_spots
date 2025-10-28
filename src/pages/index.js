@@ -195,6 +195,8 @@ function handleAvatarSubmit(evt) {
       profileAvatarEl.src = data.avatar;
       closeModal(avatarModal);
       avatarElement.reset();
+      const inputList = [avatarInput];
+      toggleButtonState(inputList, submitBtn, settings);
     })
     .catch(console.error)
     .finally(() => {
@@ -305,6 +307,8 @@ function handleAddCardSubmit(evt) {
       cardsList.prepend(cardElement);
       closeModal(newPostModal);
       evt.target.reset();
+      const inputList = [cardCaptionInput, linkInput];
+      toggleButtonState(inputList, submitBtn, settings);
     })
     .catch(console.error)
     .finally(() => {
@@ -320,7 +324,7 @@ document
     evt.preventDefault();
     if (cardToDelete) {
       const submitBtn = evt.submitter;
-      setButtonText(submitBtn, true, `Delete`, `Deleting`);
+      setButtonText(submitBtn, true, `Delete`, `Deleting...`);
 
       api
         .deleteCard(cardToDelete.dataset.cardId)
@@ -333,7 +337,7 @@ document
           console.error("Failed to delete card:", error);
         })
         .finally(() => {
-          setButtonText(submitBtn, false, `Delete`, `Deleting`);
+          setButtonText(submitBtn, false, `Delete`, `Deleting...`);
         });
     }
   });
